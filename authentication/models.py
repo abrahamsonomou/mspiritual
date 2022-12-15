@@ -89,17 +89,17 @@ class User(AbstractUser):
         if self.photo:
             return self.photo.name
         else:
-            if self.is_student:
+            if self.is_etudiant:
                 return 'student.png'
-            elif self.is_teacher:
+            elif self.is_missionnaire:
                 return 'teacher.png'
             else:
                 return 'default.png'
     
     def get_profile(self):
-        if self.is_student:
+        if self.is_etudiant:
             return Etudiant.objects.get(user=self)
-        elif self.is_teacher:
+        elif self.is_missionnaire:
             return Missionnaire.objects.get(user=self)
         else:
             return None
